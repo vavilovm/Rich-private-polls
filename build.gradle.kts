@@ -13,6 +13,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation(platform("org.junit:junit-bom:5.8.1"))
     implementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    implementation("junit:junit:4.12")
 }
 
 tasks.test {
