@@ -18,4 +18,12 @@ class RankedPollTest {
         poll.addVote(1)
         assertEquals("dsa", poll.winner())
     }
+
+    @Test
+    fun `multivote test`(){
+        val poll = RankedPoll("asd", "dsa", "sda")
+        poll.addVote(listOf<Int>(1, 0, 2))
+        poll.addVote(listOf<Int>(1, 2, 0))
+        assertEquals("dsa", poll.winner())
+    }
 }
