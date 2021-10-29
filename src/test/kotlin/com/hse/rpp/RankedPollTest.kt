@@ -12,4 +12,10 @@ class RankedPollTest {
         assertEquals("asd", poll.winner())
     }
 
+    @Test
+    fun `single vote other winner`() {
+        val poll = RankedPoll("asd", "dsa", "sda")
+        poll.addVote(1)
+        assertEquals("dsa", poll.winner())
+    }
 }
