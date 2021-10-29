@@ -2,11 +2,15 @@ package com.hse.rpp
 
 class RankedPoll (val variantes: List<String>){
 
-    constructor(vararg args: String): this(listOf<String>(*args)){}
+    private val votes: MutableList<Int> = MutableList(variantes.size) { 0 }
 
-    fun addVote(ind: Int){}
+    constructor(vararg args: String): this(listOf<String>(*args))
+
+    fun addVote(ind: Int){
+        votes[ind] += 1
+    }
 
     fun winner(): String{
-        return "asd";
+        return variantes[votes.indices.maxByOrNull { votes[it] }!!]
     }
 }
