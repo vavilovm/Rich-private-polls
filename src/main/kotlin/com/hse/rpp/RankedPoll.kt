@@ -6,6 +6,10 @@ class RankedPoll (val variantes: List<String>){
 
     constructor(vararg args: String): this(listOf<String>(*args))
 
+    fun addVote(indexes: List<Int>){
+        votes[1] += 1
+    }
+
     fun addVote(ind: Int){
         votes[ind] += 1
     }
