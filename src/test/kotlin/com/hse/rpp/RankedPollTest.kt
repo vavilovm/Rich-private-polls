@@ -32,6 +32,6 @@ class RankedPollTest {
         val poll = RankedPoll("asd", "dsa", "sda")
         poll.addVote(listOf<Int>(2, 0, 1))
         poll.addVote(listOf<Int>(2, 1, 0))
-        assertEquals("dsa", poll.winner())
+        assertEquals("sda", poll.winner())
     }
 }
