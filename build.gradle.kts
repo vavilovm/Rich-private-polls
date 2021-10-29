@@ -11,4 +11,13 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
+    implementation(platform("org.junit:junit-bom:5.8.1"))
+    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
+}
+
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }
