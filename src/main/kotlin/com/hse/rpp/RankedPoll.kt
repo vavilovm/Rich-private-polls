@@ -17,10 +17,38 @@ class RankedPoll (val variantes: List<String>){
         this.addVote(listOf(ind))
     }
 
-    fun winner(): String{
-        for (i in 0 until votes.size){
-            iterationalList[votes[i][currentIndexes[i]]] += 1
+    //https://en.wikipedia.org/wiki/Copeland%27s_method
+    fun winner(): String {
+        val scores = MutableList(variantes.size) { 0 }
+        for (i in 0..variantes.lastIndex) {
+            for (j in (i + 1)..variantes.lastIndex) {
+                val winner = pairwiseWinner(i, j)
+                when {
+                    winner < 0 -> scores[i] += 2
+                    winner == 0 -> {
+                        scores[i] += 1
+                        scores[j] += 1
+                    }
+                    winner > 0 -> scores[j] += 2
+                }
+            }
         }
-        return variantes[iterationalList.indices.maxByOrNull { iterationalList[it] }!!]
+        val m = scores.maxOrNull()!!
+        assert(scores.filter { it == m }.size == 1) //TODO: Handle ties
+        return variantes[scores.indexOf(m)]
+    }
+
+    private fun pairwiseWinner(i: Int, j: Int): Int {
+        var score = 0
+        for (vote in votes) {
+            //TODO: Change vote interface to avoid indexOf
+            val ix = vote.indexOf(i)
+            val jx = vote.indexOf(j)
+            when {
+                ix == -1 || (jx != -1 && ix > jx) -> score += 1
+                jx == -1 || (ix != -1 && ix < jx) -> score -= 1
+            }
+        }
+        return score
     }
 }
