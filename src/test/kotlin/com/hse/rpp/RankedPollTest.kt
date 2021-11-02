@@ -43,4 +43,12 @@ class RankedPollTest {
         poll.addVote(listOf(2, 1, 0))
         assertEquals("dsa", poll.winner())
     }
+
+    @Test
+    fun `draw simple test`() {
+        val poll = RankedPoll("asd", "dsa", "sda")
+        poll.addVote(listOf(0, 1, 2))
+        poll.addVote(listOf(1, 0, 2))
+        assertEquals("It's draw", poll.winner())
+    }
 }
