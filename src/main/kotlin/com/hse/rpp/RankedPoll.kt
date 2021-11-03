@@ -34,7 +34,9 @@ class RankedPoll (val variantes: List<String>){
             }
         }
         val m = scores.maxOrNull()!!
-        assert(scores.filter { it == m }.size == 1) //TODO: Handle ties
+        if (scores.filter { it == m }.size != 1) {
+            return "It's draw"
+        }
         return variantes[scores.indexOf(m)]
     }
 
