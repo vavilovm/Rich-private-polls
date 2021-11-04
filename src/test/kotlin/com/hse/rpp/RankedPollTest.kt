@@ -1,6 +1,7 @@
 package com.hse.rpp
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 
 class RankedPollTest {
@@ -22,33 +23,33 @@ class RankedPollTest {
     @Test
     fun `multivote test`(){
         val poll = RankedPoll("asd", "dsa", "sda")
-        poll.addVote(listOf(1, 0, 2))
-        poll.addVote(listOf(1, 2, 0))
+        poll.addVote(listOf(2, 1, 3))
+        poll.addVote(listOf(3, 1, 2))
         assertEquals("dsa", poll.winner())
     }
 
     @Test
     fun `multivote test 2`() {
         val poll = RankedPoll("asd", "dsa", "sda")
-        poll.addVote(listOf(2, 0, 1))
-        poll.addVote(listOf(2, 1, 0))
+        poll.addVote(listOf(2, 3, 1))
+        poll.addVote(listOf(3, 2, 1))
         assertEquals("sda", poll.winner())
     }
 
     @Test
     fun `multivote test 3`() {
         val poll = RankedPoll("asd", "dsa", "sda")
-        poll.addVote(listOf(0, 1, 2))
-        poll.addVote(listOf(1, 0, 2))
-        poll.addVote(listOf(2, 1, 0))
+        poll.addVote(listOf(1, 2, 3))
+        poll.addVote(listOf(2, 1, 3))
+        poll.addVote(listOf(3, 2, 1))
         assertEquals("dsa", poll.winner())
     }
 
     @Test
     fun `draw simple test`() {
         val poll = RankedPoll("asd", "dsa", "sda")
-        poll.addVote(listOf(0, 1, 2))
-        poll.addVote(listOf(1, 0, 2))
-        assertEquals("It's draw", poll.winner())
+        poll.addVote(listOf(1, 2, 3))
+        poll.addVote(listOf(2, 1, 3))
+        assertNull(poll.winner())
     }
 }

@@ -1,27 +1,28 @@
 package com.hse.rpp
 
-class RankedPoll (val variantes: List<String>){
+const val NO_VOTE = 0
+
+class RankedPoll (val variants: List<String>){
 
     private val votes: MutableList<List<Int>> = mutableListOf()
-    private val iterationalList: MutableList<Int> = MutableList(variantes.size){0}
-    private val currentIndexes: MutableList<Int> = MutableList(votes.size){0}
 
     constructor(vararg args: String): this(listOf<String>(*args))
 
     fun addVote(indexes: List<Int>){
         votes.add(indexes)
-        currentIndexes.add(0)
     }
 
     fun addVote(ind: Int){
-        this.addVote(listOf(ind))
+        val vote = MutableList(variants.size) { NO_VOTE }
+        vote[ind] = 1
+        this.addVote(vote)
     }
 
     //https://en.wikipedia.org/wiki/Copeland%27s_method
-    fun winner(): String {
-        val scores = MutableList(variantes.size) { 0 }
-        for (i in 0..variantes.lastIndex) {
-            for (j in (i + 1)..variantes.lastIndex) {
+    fun winner(): String? {
+        val scores = MutableList(variants.size) { 0 }
+        for (i in 0..variants.lastIndex) {
+            for (j in (i + 1)..variants.lastIndex) {
                 val winner = pairwiseWinner(i, j)
                 when {
                     winner < 0 -> scores[i] += 2
@@ -35,20 +36,19 @@ class RankedPoll (val variantes: List<String>){
         }
         val m = scores.maxOrNull()!!
         if (scores.filter { it == m }.size != 1) {
-            return "It's draw"
+            return null
         }
-        return variantes[scores.indexOf(m)]
+        return variants[scores.indexOf(m)]
     }
 
     private fun pairwiseWinner(i: Int, j: Int): Int {
         var score = 0
         for (vote in votes) {
-            //TODO: Change vote interface to avoid indexOf
-            val ix = vote.indexOf(i)
-            val jx = vote.indexOf(j)
+            val ix = vote[i]
+            val jx = vote[j]
             when {
-                ix == -1 || (jx != -1 && ix > jx) -> score += 1
-                jx == -1 || (ix != -1 && ix < jx) -> score -= 1
+                ix == NO_VOTE || (jx != NO_VOTE && ix > jx) -> score += 1
+                jx == NO_VOTE || (ix != NO_VOTE && ix < jx) -> score -= 1
             }
         }
         return score
