@@ -26,4 +26,11 @@ class ProbabilityPollTest {
         poll.addVoteForFirst(0.4)
         assertEquals(0.5, poll.firstProb())
     }
+
+    @Test
+    fun `with winner poll`() {
+        val poll = ProbabilityPoll("true", "false")
+        poll.addVoteForFirst(0.6)
+        assertEquals("true", poll.winner())
+    }
 }
