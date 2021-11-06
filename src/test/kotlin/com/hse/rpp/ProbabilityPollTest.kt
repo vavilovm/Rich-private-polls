@@ -18,4 +18,12 @@ class ProbabilityPollTest {
         poll.addVoteForFirst(0.7)
         assertEquals(0.7, poll.firstProb())
     }
+
+    @Test
+    fun `two votes poll`() {
+        val poll = ProbabilityPoll("true", "false")
+        poll.addVoteForFirst(0.6)
+        poll.addVoteForFirst(0.4)
+        assertEquals(0.5, poll.firstProb())
+    }
 }
