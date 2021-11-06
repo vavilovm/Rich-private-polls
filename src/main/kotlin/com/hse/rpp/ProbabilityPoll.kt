@@ -1,15 +1,16 @@
 package com.hse.rpp
 
-class ProbabilityPoll(val variants: List<String>){
+class ProbabilityPoll(arg1: String, arg2: String) {
 
-    constructor(arg1:String, arg2: String): this(listOf(arg1, arg2))
+    private var probFirst: Double? = null
 
-    fun addVoteForFirst(prob: Double): Boolean{
+    fun addVoteForFirst(prob: Double): Boolean {
+        probFirst = prob
         return true
     }
 
     fun firstProb(): Double {
-        return 0.6
+        return probFirst ?: 0.0
     }
 
 }
