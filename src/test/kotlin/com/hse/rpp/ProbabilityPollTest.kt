@@ -1,14 +1,14 @@
 package com.hse.rpp
 
-import org.junit.Test
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Assertions.assertEquals
 
 class ProbabilityPollTest {
 
     @Test
     fun `single vote poll`() {
-        val poll = RankedPoll()
+        val poll = ProbabilityPoll("true", "false")
         poll.addVoteForFirst(0.6)
-        Assertions.assertEquals(0.6, poll.firstProb())
+        assertEquals(0.6, poll.firstProb())
     }
 }
