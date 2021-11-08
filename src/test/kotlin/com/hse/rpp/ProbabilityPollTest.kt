@@ -28,6 +28,14 @@ class ProbabilityPollTest {
     }
 
     @Test
+    fun `two votes with nonlinearity`() {
+        val poll = ProbabilityPoll("true", "false")
+        poll.addVoteForFirst(0.8)
+        poll.addVoteForFirst(0.33)
+        assertEquals(0.66, poll.firstProb(), 1e-4)
+    }
+
+    @Test
     fun `with winner poll`() {
         val poll = ProbabilityPoll("true", "false")
         poll.addVoteForFirst(0.6)
