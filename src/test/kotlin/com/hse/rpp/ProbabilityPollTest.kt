@@ -2,6 +2,7 @@ package com.hse.rpp
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 
 class ProbabilityPollTest {
 
@@ -9,7 +10,7 @@ class ProbabilityPollTest {
     fun `single vote poll`() {
         val poll = ProbabilityPoll("true", "false")
         poll.addVoteForFirst(0.6)
-        assertEquals(0.6, poll.firstProb())
+        assertEquals(0.6, poll.firstProb(), 1e-4)
     }
 
     @Test
@@ -32,7 +33,7 @@ class ProbabilityPollTest {
         val poll = ProbabilityPoll("true", "false")
         poll.addVoteForFirst(0.8)
         poll.addVoteForFirst(0.33)
-        assertEquals(0.66, poll.firstProb(), 1e-4)
+        assertEquals(0.66, poll.firstProb(), 1e-2)
     }
 
     @Test
@@ -40,5 +41,13 @@ class ProbabilityPollTest {
         val poll = ProbabilityPoll("true", "false")
         poll.addVoteForFirst(0.6)
         assertEquals("true", poll.winner())
+    }
+
+    @Test
+    fun `without winner poll`(){
+        val poll = ProbabilityPoll("true", "false")
+        poll.addVoteForFirst(0.6)
+        poll.addVoteForFirst(0.4)
+        assertNull(poll.winner())
     }
 }

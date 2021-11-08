@@ -1,5 +1,10 @@
 package com.hse.rpp
 
+import kotlin.math.exp
+import kotlin.math.ln
+import kotlin.math.log
+import kotlin.math.sqrt
+
 class ProbabilityPoll(val arg1: String, val arg2: String) {
 
     private var probFirst: MutableList<Double> = mutableListOf()
@@ -12,11 +17,10 @@ class ProbabilityPoll(val arg1: String, val arg2: String) {
     // TODO: proper averaging
     fun firstProb(): Double {
         var res = 0.0
-        print(probFirst.lastIndex)
         for (i in 0..probFirst.lastIndex) {
-            res += probFirst[i]
+            res += ln(probFirst[i]/(1 - probFirst[i]))
         }
-        return res/(probFirst.lastIndex + 1)
+        return 1 - 1/(1 + exp(res))
     }
 
     fun winner(): String = if(firstProb() >= 0.5) arg1 else arg2
