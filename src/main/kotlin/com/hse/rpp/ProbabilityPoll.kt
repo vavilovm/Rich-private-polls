@@ -1,6 +1,6 @@
 package com.hse.rpp
 
-class ProbabilityPoll(arg1: String, arg2: String) {
+class ProbabilityPoll(val arg1: String, val arg2: String) {
 
     private var probFirst: MutableList<Double> = mutableListOf()
 
@@ -9,6 +9,7 @@ class ProbabilityPoll(arg1: String, arg2: String) {
         return true
     }
 
+    // TODO: proper averaging
     fun firstProb(): Double {
         var res = 0.0
         print(probFirst.lastIndex)
@@ -17,5 +18,7 @@ class ProbabilityPoll(arg1: String, arg2: String) {
         }
         return res/(probFirst.lastIndex + 1)
     }
+
+    fun winner(): String = if(firstProb() >= 0.5) arg1 else arg2
 
 }
