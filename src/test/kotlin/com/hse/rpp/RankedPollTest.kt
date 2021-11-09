@@ -52,4 +52,10 @@ class RankedPollTest {
         poll.addVote(listOf(2, 1, 3))
         assertNull(poll.winner())
     }
+
+    @Test
+    fun `zero votes winner`(){
+        val poll = RankedPoll("asd", "dsa", "sda")
+        assertNull(poll.winner())
+    }
 }
