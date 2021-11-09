@@ -16,4 +16,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Classic single-vote polls 
++ Classic single-vote polls 
+
+
+## [1.1.0]
+
+### Added
+
++ GUI
++ Database support
