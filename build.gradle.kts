@@ -1,9 +1,14 @@
 plugins {
     kotlin("jvm") version "1.5.10"
+    jacoco
 }
 
 group = "org.example"
 version = "1.0-SNAPSHOT"
+
+jacoco {
+    toolVersion = "0.8.7"
+}
 
 repositories {
     mavenCentral()
@@ -20,5 +25,14 @@ tasks.test {
     useJUnitPlatform()
     testLogging {
         events("passed", "skipped", "failed")
+    }
+    finalizedBy(project.tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(false)
+        csv.required.set(false)
+        html.required.set(true)
     }
 }

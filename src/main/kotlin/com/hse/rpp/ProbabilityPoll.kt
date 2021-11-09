@@ -23,6 +23,17 @@ class ProbabilityPoll(val arg1: String, val arg2: String) {
         return 1 - 1/(1 + exp(res))
     }
 
-    fun winner(): String = if(firstProb() >= 0.5) arg1 else arg2
+    fun winner(): String?{
+        val res = firstProb()
+        if(res > 0.5){
+            return arg1
+        } else {
+            if(res < 0.5){
+                return arg2
+            } else {
+                return null
+            }
+        }
+    }
 
 }
