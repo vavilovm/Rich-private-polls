@@ -58,4 +58,15 @@ class RankedPollTest {
         val poll = RankedPoll("asd", "dsa", "sda")
         assertNull(poll.winner())
     }
+
+    @Test
+    fun `many votes test`() {
+        val poll = RankedPoll("asd", "dsa", "sda")
+        for (i in 1..10000) {
+            poll.addVote(listOf(1, 2, 3))
+            poll.addVote(listOf(2, 1, 3))
+            poll.addVote(listOf(3, 2, 1))
+        }
+        assertEquals("dsa", poll.winner())
+    }
 }

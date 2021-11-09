@@ -50,4 +50,14 @@ class ProbabilityPollTest {
         poll.addVoteForFirst(0.4)
         assertNull(poll.winner())
     }
+
+    @Test
+    fun `many votes test`() {
+        val poll = ProbabilityPoll("true", "false")
+        for (i in 1..10000) {
+            poll.addVoteForFirst(0.65)
+            poll.addVoteForFirst(0.4)
+        }
+        assertEquals("true", poll.winner())
+    }
 }
