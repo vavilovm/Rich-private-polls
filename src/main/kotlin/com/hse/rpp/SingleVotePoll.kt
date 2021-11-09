@@ -11,21 +11,21 @@ class SingleVotePoll(val variants: List<String>) {
         return true
     }
 
-    fun get_winner(): String? {
-        var max_index = -1
-        var max_value = 0
-        var f = true
-        for (i in 0..variants.size) {
-            if (votes[i] > max_value) {
-                max_value = votes[i]
-                max_index = i
-                f = false
-            } else if (votes[i] == max_value) {
-                f = true
+    fun winner(): String? {
+        var maxIndex = -1
+        var maxValue = 0
+        var isDraw = true
+        for (i in 0..variants.lastIndex) {
+            if (votes[i] > maxValue) {
+                maxValue = votes[i]
+                maxIndex = i
+                isDraw = false
+            } else if (votes[i] == maxValue) {
+                isDraw = true
             }
         }
-        if (!f) {
-            return variants[max_index]
+        if (!isDraw) {
+            return variants[maxIndex]
         }
         return null
     }
