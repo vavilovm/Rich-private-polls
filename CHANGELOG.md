@@ -11,3 +11,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 + Support for Two-Option Probability Polls
 + Support for Ranked Polls
+
+## [1.0.0]
+
+### Added
+
++ Support for Single Vote Poll
++ 
