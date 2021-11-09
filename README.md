@@ -7,6 +7,9 @@ Now you can have access for two different types of expanded polls:
 * [Ranked poll](https://en.wikipedia.org/wiki/Ranked_voting#:~:text=Ranked%20voting%20is%20any%20election,the%20same%20set%20of%20ballots)
 * Probability poll
 
+and also traditional polls:
+* one-vote poll
+
 ## Usage
 We don't have any releases right now. But they will come soon!!!
 
