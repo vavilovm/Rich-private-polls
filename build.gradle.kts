@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.5.10"
     jacoco
+    application
 }
 
 group = "org.example"
@@ -35,4 +36,8 @@ tasks.jacocoTestReport {
         csv.required.set(false)
         html.required.set(true)
     }
+}
+
+application {
+    mainClass.set("com.hse.MainKt")
 }
