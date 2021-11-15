@@ -10,8 +10,11 @@ Now you can have access for two different types of expanded polls:
 and also traditional polls:
 * one-vote poll
 
-## Usage
-We don't have any releases right now. But they will come soon!!!
+## Build and execution
+`docker build -t  <processName> .` starts docker process.
+
+`docker run <processName>` starts the program:
+
 
 ## Contribution
 Your pull requests with new polls are welcome!
