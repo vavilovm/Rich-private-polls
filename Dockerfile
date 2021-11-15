@@ -4,4 +4,6 @@ FROM openjdk:${VERSION}-jdk as BUILD
 
 COPY . .
 WORKDIR .
-RUN ./gradlew run
+RUN ./gradlew build
+
+CMD ["./gradlew", "run"]
