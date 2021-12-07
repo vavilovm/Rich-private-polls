@@ -25,3 +25,12 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 + GUI
 + Database support
+
+
+## [1.2.0]
+### Added
+
+
++ Messenger bots
++ Poll data infographics
++ Support for import and export
